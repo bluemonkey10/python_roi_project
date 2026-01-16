@@ -1,21 +1,27 @@
 import time
+import keyboard
 
 def countdown(t):
   while t:
     mins, secs = divmod(t, 60)
-    timer = '{:02d}:{:02d}'.format(mins, secs)
+    timer = f"{mins:02d}:{secs:02d}"
     print(timer, end='\r')
     time.sleep(1)
     t-=1
 
-  print("Fire at will!)
+  print("Fire at will!")
 
-t = input("Enter the time in seconds: ")
+def stopwatch():
+  while True:
+    print(keyboard.read_key())
+    if keyboard.read_key() == "a":
+      break
 
 # Validating user input
 y = True
 while y:
   try:
+    t = input("Enter the time in seconds: ")
     t = int(t)
     y = False
   except:
@@ -23,3 +29,4 @@ while y:
 
 # Running the countdown function
 countdown(t)
+stopwatch()
